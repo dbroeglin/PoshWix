@@ -2,19 +2,18 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
    <Product Id="*"
 		UpgradeCode="ccfb8a65-3ed6-413a-8305-18fd57329290"
-        Name="PoshWix"
-		Version="0.0.1"
-		Manufacturer="Dominique Broeglin"
+    Name="$(var.ModuleName)"
+		Version="$(var.ModuleVersion)"
+		Manufacturer="$(var.Manufacturer)"
 		Language="1033">
 
    <Package InstallerVersion="301"
 		 Compressed="yes"
 		 Comments="Windows Installer Package"/>
-
-        <InstallExecuteSequence>
-            <RemoveExistingProducts After="InstallInitialize"></RemoveExistingProducts>
-        </InstallExecuteSequence>
-      <MediaTemplate EmbedCab="yes"/>
+   <InstallExecuteSequence>
+      <RemoveExistingProducts After="InstallInitialize"></RemoveExistingProducts>
+   </InstallExecuteSequence>
+   <MediaTemplate EmbedCab="yes"/>
 
 	  <!--  C:\Windows\system32\WindowsPowerShell\v1.0\Modules -->
 	  <Directory Id="TARGETDIR" Name="SourceDir">
