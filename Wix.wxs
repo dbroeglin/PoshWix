@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+   <Product Id="*"
+		UpgradeCode="ccfb8a65-3ed6-413a-8305-18fd57329290"
+        Name="PoshWix"
+		Version="0.0.1"
+		Manufacturer="Dominique Broeglin"
+		Language="1033">
+
+   <Package InstallerVersion="301"
+		 Compressed="yes"
+		 Comments="Windows Installer Package"/>
+
+        <InstallExecuteSequence>
+            <RemoveExistingProducts After="InstallInitialize"></RemoveExistingProducts>
+        </InstallExecuteSequence>
+      <MediaTemplate EmbedCab="yes"/>
+
+	  <!--  C:\Windows\system32\WindowsPowerShell\v1.0\Modules -->
+	  <Directory Id="TARGETDIR" Name="SourceDir">
+	  	<Directory Id="System64Folder" Name="SystemFolder">
+		      <Directory Id="WindowsPoshFolder" Name="WindowsPowerShell">
+			      <Directory Id="WindowsPoshFolderv10" Name="v1.0">
+			        <Directory Id="INSTALLDIR" Name="Modules">
+			          <Directory Id="ModuleFolder" Name="$(var.ModuleName)"/>
+			        </Directory>
+		        </Directory>
+          </Directory>
+		  </Directory>
+	  </Directory>
+
+    <Feature Id="$(var.ModuleName)" Title="$(var.ModuleName)" Level="1" ConfigurableDirectory="INSTALLDIR">
+      <ComponentGroupRef Id="NewFilesGroup"/>
+    </Feature>
+  </Product>
+</Wix>
