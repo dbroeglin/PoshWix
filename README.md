@@ -12,7 +12,7 @@ UpgradeCode to something else). Then execute:
 
     Write-WixModulePackage
 
-You should get a nice MSI that will install 
+You should get a nice MSI that will install your module in `C:\Windows\system32\WindowsPowerShell\v1.0\Modules`
 
 # Documentation
 
