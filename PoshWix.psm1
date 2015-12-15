@@ -19,7 +19,7 @@ function Copy-SourceFiles($SourceDir, $TempDir) {
     $TempSourceDir = Join-Path $TempDir TempSourceDir
     mkdir -Force $TempSourceDir > $Null 
 	
-    Copy-Item $SourceDir/* $TempSourceDir -Exclude *.msi,*.wixpdb
+    Copy-Item $SourceDir/* $TempSourceDir -Exclude *.msi,*.pdbout
 
     $TempSourceDir
 }
@@ -114,7 +114,7 @@ function Write-WixModulePackage {
     $DirectoryObj = $DirectoryWxs -replace ".wxs",".wixobj"
 	mkdir -Force $TempWorkDir > $Null
 	    
-	& "$WixHome\heat.exe" dir $TempSourceDir -var var.MySource -cg NewFilesGroup -g1 -sf -srd  -v -gg -sfrag -template fragment -dr ModuleFolder -out $DirectoryWxs
+	& "$WixHome\heat.exe" dir $TempSourceDir -var var.MySource -cg NewFilesGroup -g1 -sf -srd  -v -gg -sfrag -template fragment -dr MODULEFOLDER -out $DirectoryWxs
 	& "$WixHome\candle.exe" -arch x64 -wx -v $Wix -o $WixObj `
         "-dModuleName=$ModuleName" `
         "-dModuleVersion=$ModuleVersion" `

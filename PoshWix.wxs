@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-   <Product Id="*"
+  <Product Id="*"
 		UpgradeCode="ccfb8a65-3ed6-413a-8305-18fd57329290"
     Name="$(var.ModuleName)"
 		Version="$(var.ModuleVersion)"
@@ -10,9 +10,19 @@
    <Package InstallerVersion="301"
 		 Compressed="yes"
 		 Comments="Windows Installer Package"/>
-   <InstallExecuteSequence>
-      <RemoveExistingProducts After="InstallInitialize"></RemoveExistingProducts>
-   </InstallExecuteSequence>
+     
+     <Upgrade Id='ccfb8a65-3ed6-413a-8305-18fd57329290'>
+     <UpgradeVersion Minimum='0.0.0.0'
+                  IncludeMinimum='yes'
+                  Maximum='$(var.ModuleVersion)'
+                  IncludeMaximum='no'
+                  Property='UPGRADEFOUND' />                  
+    </Upgrade>
+     
+    <InstallExecuteSequence>
+      <RemoveExistingProducts After='InstallInitialize' />
+    </InstallExecuteSequence>
+
    <MediaTemplate EmbedCab="yes"/>
 
 	  <!--  C:\Windows\system32\WindowsPowerShell\v1.0\Modules -->
@@ -21,7 +31,7 @@
 		      <Directory Id="WindowsPoshFolder" Name="WindowsPowerShell">
 			      <Directory Id="WindowsPoshFolderv10" Name="v1.0">
 			        <Directory Id="INSTALLDIR" Name="Modules">
-			          <Directory Id="ModuleFolder" Name="$(var.ModuleName)"/>
+			          <Directory Id="MODULEFOLDER" Name="$(var.ModuleName)"/>
 			        </Directory>
 		        </Directory>
           </Directory>

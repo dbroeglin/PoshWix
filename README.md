@@ -17,6 +17,10 @@ You should get a nice MSI that will install your module in `C:\Windows\system32\
 # Documentation
 
     help Write-WixModulePackage
+
+# TODO
+
+1. Validate version number format to allow for smooth upgrades.
   
 # Disclaimer
 
